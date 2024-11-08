@@ -1,0 +1,71 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id         Int       @id @default(autoincrement())
+  name       String?
+  email      String    @unique
+  password   String?
+  otp        String?
+  otpExpire  DateTime?
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+
+  // One user can have many posts
+  posts   Post[]
+  Comment Comment[]
+
+  @@map("users")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // One category can have many posts
+  posts Post[]
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  // Many-to-many relationship with posts
+  posts Post[] @relation("PostTags")
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String
+  authorId   Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  // Many-to-many relationship with tags
+  tags Tag[] @relation("PostTags")
+
+  //Post relation to User model
+  author  User      @relation(fields: [authorId], references: [id])
+  Comment Comment[]
+
+  @@map("posts")
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  content    String
+  authorId   Int
+  postId     Int
+  created_at DateTime @default(now())
+  author     User     @relation(fields: [authorId], references: [id])
+  post       Post     @relation(fields: [postId], references: [id])
+}

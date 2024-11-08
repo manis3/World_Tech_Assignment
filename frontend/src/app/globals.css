@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,*::after {
+  box-sizing: border-box;
+}
+
+
+html, body,#root,
+.app {
+  height: 100%;
+  width: 100%;
+  @apply text-sm bg-green-500 text-gray-900;
+}
+
+@layer base {
+  :root{
+    ---white: #fff;
+    --milk-white: #e6ebf5;
+    --ghost-white: #f6f8fc;
+    --background: var(--ghost-white);
+     --foreground: var(--milk-white);
+    --text-color: #000;
+    --text-ghost-white: #170000;
+    --card: var(--milk-white);
+    --card-foreground: #0a0a0a;
+    --card-background-faded: #f2f4f9;
+     --grayscale-milk-white: var(--milk-white);
+    --grayscale-ghost-white: var(--white);
+    --grayscale-licorice: #100f18;
+    --text-grayscale-licorice: var(--grayscale-licorice);
+  }
+
+  .dark{
+    --background: #d1d5db;
+    --milk-white: #1e2834;
+    --text-color: #fff;
+    --foreground: var(--milk-white);
+     --card: #28313e;
+     --card-foreground: #fafafa;
+     --card-background-faded: #27303d99;
+    --text-ghost-white: #f9f9f9;
+         --grayscale-milk-white: #1b2531;
+      --grayscale-ghost-white: #27303d;
+      --grayscale-licorice: #e6ebf5;
+      --text-grayscale-licorice: var(--grayscale-licorice);
+    
+  }
+}
