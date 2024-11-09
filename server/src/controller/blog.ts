@@ -37,7 +37,14 @@ export const createBlog = async (
 }
 
 export const getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
+
+  const page = req.query.page ? String(req.query.page) : null;
+  const limit = req.query.limit ? Number(req.query.limit) : 10;
+
   const posts = await prismaClient.post.findMany({
+    take: limit,
+    skip: page ? 1 : 0,
+    cursor: page ? { id: Number(page) } : undefined,
     include: {
       author: true,
       Comment: {
@@ -49,7 +56,9 @@ export const getAllPosts = async (req: Request, res: Response, next: NextFunctio
       tags: true,
     },
   });
-  res.json({ message: 'Posts fetched successfully', data: { posts } });
+  const totalPosts = await prismaClient.post.count();
+  const nextCursor = posts.length > 0 ? posts[posts.length - 1].id : null;
+  res.json({ message: 'Posts fetched successfully', data: { posts, nextCursor, totalPosts: totalPosts } });
 }
 
 
