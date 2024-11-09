@@ -56,11 +56,9 @@ export function useResetPasswordSteps() {
             setFinalData(prev => ({ ...prev, email: data.email }));
             await sendOtp(data.email);
             setStep("OTP");
-            console.log("Requesting OTP for:", data.email);
         } else if (step === "OTP") {
             setFinalData(prev => ({ ...prev, otp: data.otp }));
             setStep("RESET_PASSWORD");
-            console.log("OTP entered:", data.otp);
         } else if (step === "RESET_PASSWORD") {
             const completeData = { ...finalData, newPassword: data.newPassword };
             await resetUserPassword(completeData)

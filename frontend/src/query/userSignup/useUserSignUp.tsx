@@ -1,7 +1,6 @@
 import useAxiosInstance from '@/services/useAxiosInstance'
 import { SignupRequest } from '@/types/ssignUpTypes';
 import { useMutation } from '@tanstack/react-query';
-import React from 'react'
 
 export default function useUserSignUp() {
     const { axiosInstance } = useAxiosInstance();

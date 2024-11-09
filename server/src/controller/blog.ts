@@ -2,8 +2,9 @@ import { NextFunction, Request, Response } from 'express'
 import prismaClient from '../../Db/db.config'
 import { BadRequestException } from '../error/badRequest'
 import { ErrorCode } from '../consts/errorCode'
+import { NotFound } from './notFound'
 
-export const createBlog = async (
+export const createPost = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -37,14 +38,16 @@ export const createBlog = async (
 }
 
 export const getAllPosts = async (req: Request, res: Response, next: NextFunction) => {
-
-  const page = req.query.page ? String(req.query.page) : null;
+  const page = req.query.page ? Number(req.query.page) : 1;
   const limit = req.query.limit ? Number(req.query.limit) : 10;
 
+  // Calculate skip value based on the current page and limit
+  const skip = (page - 1) * limit;
+
+  // Fetch posts with pagination
   const posts = await prismaClient.post.findMany({
     take: limit,
-    skip: page ? 1 : 0,
-    cursor: page ? { id: Number(page) } : undefined,
+    skip: skip,
     include: {
       author: true,
       Comment: {
@@ -56,10 +59,54 @@ export const getAllPosts = async (req: Request, res: Response, next: NextFunctio
       tags: true,
     },
   });
+
   const totalPosts = await prismaClient.post.count();
-  const nextCursor = posts.length > 0 ? posts[posts.length - 1].id : null;
-  res.json({ message: 'Posts fetched successfully', data: { posts, nextCursor, totalPosts: totalPosts } });
+
+  // Check if there are more posts available
+  const nextPage = posts.length < limit ? null : page + 1;
+
+  res.json({
+    message: 'Posts fetched successfully',
+    data: {
+      posts,
+      nextPage,  // Include nextPage for the client to know if there are more posts
+      totalPosts,
+    }
+  });
 }
+
+export const getPostById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const postId = parseInt(req.params.id as string);
+
+  NotFound(postId, 'Post not found!', next)
+
+
+  const post = await prismaClient.post.findUnique({
+    where: { id: postId },
+    include: {
+      author: true,
+      category: true,
+      tags: true,
+      Comment: {
+        include: {
+          author: true,
+        },
+      },
+    },
+  });
+
+  NotFound(postId, 'Post not found!', next)
+
+
+  res.json({
+    message: 'Post fetched successfully',
+    data: post,
+  });
+};
 
 
 export const getUserPosts = async (
@@ -97,7 +144,6 @@ export const updatePost = async (
     include: { author: true },
   })
 
-  console.log(post)
   if (!post) {
     return next(
       new BadRequestException('Post not found!', ErrorCode.USER_NOT_FOUND),

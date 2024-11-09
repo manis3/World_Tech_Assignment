@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Seo } from '@/components/Seo/seo';
-import BlogHomePage from '@/features/HomePage/BlogHomePage';
+import BlogHomePage from '@/features/HomePage/blogHome';
 
 export default function Home() {
   return (

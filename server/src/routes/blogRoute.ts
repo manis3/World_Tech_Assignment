@@ -2,9 +2,11 @@ import { Router } from 'express'
 import { errorHandler } from '../errorHandler'
 import { authMiddleware } from '../middleware/auth'
 import {
-  createBlog,
+
+  createPost,
   deletePost,
   getAllPosts,
+  getPostById,
   getUserPosts,
   updatePost,
 } from '../controller/blog'
@@ -12,7 +14,8 @@ import {
 const blogRoutes: Router = Router()
 
 blogRoutes.get('/all', errorHandler(getAllPosts));
-blogRoutes.post('/create-blog', [authMiddleware], errorHandler(createBlog));
+blogRoutes.get('/:id', [authMiddleware], errorHandler(getPostById));
+blogRoutes.post('/create-post', [authMiddleware], errorHandler(createPost));
 blogRoutes.get('/user-posts', [authMiddleware], errorHandler(getUserPosts));
 blogRoutes.put('/update-post', [authMiddleware], errorHandler(updatePost));
 blogRoutes.delete('/delete-post', [authMiddleware], errorHandler(deletePost));

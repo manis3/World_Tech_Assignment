@@ -93,7 +93,6 @@ export const requestRessetPasssword = async (
   const { email } = req.body
 
   const user = await prismaClient.user.findUnique({ where: { email } })
-  console.log(user)
   if (!user) {
     return next(
       new BadRequestException('User not found', ErrorCode.USER_NOT_FOUND),

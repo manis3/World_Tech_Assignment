@@ -9,11 +9,11 @@ export const useFetchBlogs = () => {
     const { data, isPending, isError, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
         {
             queryKey: [USE_FETCH_BLOGS],
-            queryFn: async ({ pageParam }) => {
-                const res = await axiosInstance.get(`blog/all?limit=20&_page=${pageParam}`);
+            queryFn: async ({ pageParam = 0 }) => {
+                const res = await axiosInstance.get(`blog/all?limit=20&page=${pageParam}`);
                 return res;
             },
-            initialPageParam: 0,
+            initialPageParam: 1,
             getNextPageParam: (_lastPage, allPages) => {
                 if (allPages.length < 10) {
                     return allPages.length + 1;

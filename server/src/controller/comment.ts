@@ -5,7 +5,6 @@ import prismaClient from "../../Db/db.config";
 
 export const createComment = async (req: Request, res: Response, next: NextFunction) => {
     const { postId, content } = req.body;
-    console.log(req.body)
     const userId = req?.user?.id;
     if (!userId) {
         return next(new UnAuthorizedHttpException('unauthorized', ErrorCode.UNAUTHORIZED));
