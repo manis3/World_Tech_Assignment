@@ -128,44 +128,50 @@ export default function UpdateBlogModal({
 
                 <div className="flex flex-wrap gap-4">
                     <h1 className="text-right font-medium">Category</h1>
-                    {allCategory && allCategory.length > 0 ? (
-                        //@ts-expect-error
-                        allCategory.map((category) => (
-                            <span
-                                key={category.id}
-                                onClick={() => setSelectedCategory(category.id)}
-                                className={cn(
-                                    "cursor-pointer ml-5 bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full",
-                                    selectedCategory === category.id ? "bg-blue-500 text-white" : ""
-                                )}
-                            >
-                                {category.name}
-                            </span>
-                        ))
-                    ) : (
-                        <p>No categories available</p>
-                    )}
+                    <div className='ml-5'>
+
+                        {allCategory && allCategory.length > 0 ? (
+                            //@ts-expect-error
+                            allCategory.map((category) => (
+                                <span
+                                    key={category.id}
+                                    onClick={() => setSelectedCategory(category.id)}
+                                    className={cn(
+                                        "cursor-pointer ml-2  bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full",
+                                        selectedCategory === category.id ? "bg-blue-500 text-white" : ""
+                                    )}
+                                >
+                                    {category.name}
+                                </span>
+                            ))
+                        ) : (
+                            <p>No categories available</p>
+                        )}
+                    </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-2">
                     <h1 className="text-right font-medium">Tags</h1>
-                    {allTags && allTags.length > 0 ? (
-                        //@ts-expect-error
-                        allTags.map((tag) => (
-                            <span
-                                key={tag.id}
-                                onClick={() => toggleTagSelection(tag.id)}
-                                className={cn(
-                                    "cursor-pointer ml-12 bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full",
-                                    selectedTags.includes(tag.id) ? "bg-blue-500 text-white" : ""
-                                )}
-                            >
-                                {tag.name}
-                            </span>
-                        ))
-                    ) : (
-                        <p>No tags available</p>
-                    )}
+                    <div className='ml-12'>
+
+                        {allTags && allTags.length > 0 ? (
+                            //@ts-expect-error
+                            allTags.map((tag) => (
+                                <span
+                                    key={tag.id}
+                                    onClick={() => toggleTagSelection(tag.id)}
+                                    className={cn(
+                                        "cursor-pointer ml-2  bg-gray-200 text-gray-700 text-xs font-medium px-3 py-1 rounded-full",
+                                        selectedTags.includes(tag.id) ? "bg-blue-500 text-white" : ""
+                                    )}
+                                >
+                                    {tag.name}
+                                </span>
+                            ))
+                        ) : (
+                            <p>No tags available</p>
+                        )}
+                    </div>
                 </div>
 
                 <div className="flex justify-between">

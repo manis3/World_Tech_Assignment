@@ -34,7 +34,7 @@ export default function BlogHomePage() {
             {isBlogBeingfetched && !allBlogs ? (
                 <Loader />
             ) : allBlogs && allBlogs.pages.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+                <div className="h-[795px] overflow-y-scroll scrollbar-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                     {allBlogs.pages.map((page) =>
                         //@ts-expect-error: blog implicptly has type any
                         page?.data?.data?.posts.map(blog => (

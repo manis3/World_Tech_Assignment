@@ -9,9 +9,9 @@ import { useHandleModalAction } from './useHandleModalAction';
 import Input from '@/components/ui/input/default';
 import Button from '@/components/ui/button/buttonWithLoadingState';
 import { emailSchema, newPasswordSchema, otpSchema } from '@/schema/resetpasswordSchema';
-import useRequestOtp from '@/query/RessetPassword/useRequestOtp';
+import useRequestOtp from '@/query/resetPassword/useRequestOtp';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/otp/otp';
-import useResetPassword from '@/query/RessetPassword/useResetPassword';
+import useResetPassword from '@/query/resetPassword/useResetPassword';
 
 
 const resetPasswordSchema = emailSchema.merge(otpSchema).merge(newPasswordSchema);
