@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Modal from '../ui/Modal/Modal';
+import Modal from '../ui/modal/modal';
 import Input from '../ui/input/default';
 import { z } from 'zod';
 import { useForm, Controller, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '@/schema/loginSchema';
 import { LoginRequest } from '@/types/loginType';
-import Button from '../ui/Button/ButtonWithLoadingState';
+import Button from '../ui/button/buttonWithLoadingState';
 import { cn } from '@/utils/cn';
 import { useResetPasswordSteps } from '@/hooks/useResetPasswordSteps';
 

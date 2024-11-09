@@ -1,5 +1,5 @@
 "use client"
-import { Seo } from '@/components/Seo/seo'
+import { Seo } from '@/components/seo/seo'
 import BlogDetails from '@/features/DetailsPage/blogDetails'
 import React from 'react'
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from '../ui/Modal/Modal';
+import Modal from '../ui/modal/modal';
 import Input from '../ui/input/default';
 import { z } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Button from '../ui/Button/ButtonWithLoadingState';
+import Button from '../ui/button/buttonWithLoadingState';
 import { cn } from '@/utils/cn';
 import { signUpSchema } from '@/schema/signupSchema';
 import { SignupRequest } from '@/types/ssignUpTypes';

@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader } from 'lucide-react';
 import { useHandleModalAction } from './useHandleModalAction';
 import Input from '@/components/ui/input/default';
-import Button from '@/components/ui/Button/ButtonWithLoadingState';
+import Button from '@/components/ui/button/buttonWithLoadingState';
 import { emailSchema, newPasswordSchema, otpSchema } from '@/schema/resetpasswordSchema';
 import useRequestOtp from '@/query/RessetPassword/useRequestOtp';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/otp/otp';

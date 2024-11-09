@@ -1,5 +1,5 @@
 import React from 'react'
-import Blog from '../BlogCard/blog';
+import Blog from '../blogCard/blog';
 import { cn } from '@/utils/cn';
 
 export default function CategoryAndTagBlog({

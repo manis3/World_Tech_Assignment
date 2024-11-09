@@ -1,8 +1,8 @@
 'use client'
-import CategoryAndTagBlog from '@/components/Blogs/categoryAndTagBlog';
+import CategoryAndTagBlog from '@/components/blogs/categoryAndTagBlog';
 import Loader from '@/components/ui/Loader/Loader';
-import useFetchAllTags from '@/query/Tag/useFetchAllTags';
-import useFetchPostByTag from '@/query/Tag/useFetchPostByTag';
+import useFetchAllTags from '@/query/tag/useFetchAllTags';
+import useFetchPostByTag from '@/query/tag/useFetchPostByTag';
 import React, { useState } from 'react'
 
 export default function BlogTag() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from '../ui/card';
-import Button from '../ui/Button/ButtonWithLoadingState';
+import Button from '../ui/button/buttonWithLoadingState';
 import { Edit2Icon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 

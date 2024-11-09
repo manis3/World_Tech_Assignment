@@ -1,9 +1,9 @@
 'use client'
-import Blog from '@/components/BlogCard/blog';
-import CategoryAndTagBlog from '@/components/Blogs/categoryAndTagBlog';
+import Blog from '@/components/blogCard/blog';
+import CategoryAndTagBlog from '@/components/blogs/categoryAndTagBlog';
 import Loader from '@/components/ui/Loader/Loader';
-import useFetchPostByCategory from '@/query/Category/useFetchBlogByCategory';
-import useFetchCategory from '@/query/Category/useFetchCategory'
+import useFetchPostByCategory from '@/query/category/useFetchBlogByCategory';
+import useFetchCategory from '@/query/category/useFetchCategory'
 import { cn } from '@/utils/cn';
 import React, { useState } from 'react'
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import SearchComponent from '../SearchBar'
+import SearchComponent from '../searchBar'
 import Image from 'next/image'
 import blogImage from '../../assets/Blog_Image.png'
-import RouteMap from './routes'
 import { routes } from '../consts/routes'
 import useLogin from '@/hooks/login/useLogin'
 import LoginModal from '../loginModal/loginModal'
-import Button from '../ui/Button/ButtonWithLoadingState'
+import Button from '../ui/button/buttonWithLoadingState'
 import SignupModal from '../signupModal/signupModal'
+import RouteMap from './routes'
 
 
 const IsAuthenticated = ({ handleOpenModal, isAuthenticated, handleShowSignupModal, handleLogout }: {

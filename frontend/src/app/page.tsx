@@ -1,7 +1,7 @@
 'use-client'
 
 import React from 'react';
-import { Seo } from '@/components/Seo/seo';
+import { Seo } from '@/components/seo/seo';
 import BlogHomePage from '@/features/HomePage/blogHome';
 
 export default function Home() {

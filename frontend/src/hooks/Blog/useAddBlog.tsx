@@ -1,9 +1,9 @@
 import { ICreateBlogProps } from '@/types/blogTypes';
 import { useHandleModalAction } from '../useHandleModalAction';
-import useAddNewlBLog from '@/query/BlogQuery/useAddNewlBLog';
+import useAddNewlBLog from '@/query/blogQuery/useAddNewlBLog';
 import { useState } from 'react';
-import useFetchBlogById from '@/query/BlogQuery/useFetchBlogById';
-import useUpdateBlog from '@/query/BlogQuery/useUpdateBlog';
+import useFetchBlogById from '@/query/blogQuery/useFetchBlogById';
+import useUpdateBlog from '@/query/blogQuery/useUpdateBlog';
 
 export default function useAddBlog() {
     const [updateBlogId, setUpdateBlogId] = useState<number>()

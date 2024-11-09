@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Modal from '../ui/Modal/Modal';
+import Modal from '../ui/modal/modal';
 import Input from '../ui/input/default';
 import { z } from 'zod';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Button from '../ui/Button/ButtonWithLoadingState';
+import Button from '../ui/button/buttonWithLoadingState';
 import { cn } from '@/utils/cn';
-import { Textarea } from '../ui/Textarea/Textarea';
+import { Textarea } from '../ui/textArea/textArea';
 import { ICreateBlogProps } from '@/types/blogTypes';
-import useFetchCategory from '@/query/Category/useFetchCategory';
-import useFetchAllTags from '@/query/Tag/useFetchAllTags';
+import useFetchCategory from '@/query/category/useFetchCategory';
+import useFetchAllTags from '@/query/tag/useFetchAllTags';
 
 const newBlogSchema = z.object({
     title: z.string().min(1, "Title is required"),

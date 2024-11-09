@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import Button from '@/components/ui/Button/ButtonWithLoadingState';
-import { Textarea } from '@/components/ui/Textarea/Textarea';
-import useFetchBlogById from '@/query/BlogQuery/useFetchBlogById';
+import Button from '@/components/ui/button/buttonWithLoadingState';
+import { Textarea } from '@/components/ui/textArea/textArea';
+import useFetchBlogById from '@/query/blogQuery/useFetchBlogById';
 import usePostComment from '@/query/comment/usePostComment';
 
 

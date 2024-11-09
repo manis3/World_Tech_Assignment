@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect } from 'react';
-import { useFetchBlogs } from '@/query/BlogQuery/useFetchBlogs';
-import Blog from '@/components/BlogCard/blog';
+import { useFetchBlogs } from '@/query/blogQuery/useFetchBlogs';
+import Blog from '@/components/blogCard/blog';
 import { useInView } from 'react-intersection-observer';
 import Loader from '@/components/ui/Loader/Loader';
-import Button from '@/components/ui/Button/ButtonWithLoadingState';
-import AddBlog from '@/components/Blogs/addBlogs';
-import useAddBlog from '@/hooks/Blog/useAddBlog';
-import UpdateBlogModal from '@/components/Blogs/updateBlogModal';
+import Button from '@/components/ui/button/buttonWithLoadingState';
+import AddBlog from '@/components/blogs/addBlogs';
+import useAddBlog from '@/hooks/blog/useAddBlog';
+import UpdateBlogModal from '@/components/blogs/updateBlogModal';
 
 export default function BlogHomePage() {
     const { allBlogs, isBlogBeingfetched, isFetchingNextPage, fetchNextPage } = useFetchBlogs();

@@ -23,6 +23,7 @@ export default function Modal({
         <Dialog open={show} onOpenChange={closeModal}>
             <DialogPortal>
                 <DialogContent
+                    //@ts-expect-error
                     overlay={
                         <DialogOverlay className="bg-opacity-[0.40] bg-black backdrop-blur-[2px]" />
                     }
