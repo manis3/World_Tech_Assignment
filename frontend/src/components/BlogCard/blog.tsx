@@ -30,7 +30,7 @@ export default function Blog({
 }) {
     const router = useRouter();
     const handleReadMore = (id: number) => {
-        router.push(`/blog/${id}`);
+        router.push(`/blog?id=${id}`);
     }
     return (
         <>
