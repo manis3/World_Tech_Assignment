@@ -14,7 +14,7 @@ import {
 const blogRoutes: Router = Router()
 
 blogRoutes.get('/all', errorHandler(getAllPosts));
-blogRoutes.get('/:id', [authMiddleware], errorHandler(getPostById));
+blogRoutes.get('/:id', errorHandler(getPostById));
 blogRoutes.post('/create-post', [authMiddleware], errorHandler(createPost));
 blogRoutes.get('/user-posts', [authMiddleware], errorHandler(getUserPosts));
 blogRoutes.put('/update-post', [authMiddleware], errorHandler(updatePost));

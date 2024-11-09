@@ -18,6 +18,12 @@ export default function useAddNewlBLog() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [USE_FETCH_BLOGS] })
             alert('Blog created successfully');
+        },
+        onError: (error) => {
+            //@ts-expect-error
+            console.log(error?.status)
+            //@ts-expect-error
+            alert(getErrorMessage(error?.status))
         }
     });
     return {

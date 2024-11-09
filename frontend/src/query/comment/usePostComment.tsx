@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosInstance from "@/services/useAxiosInstance";
 import { LoginRequest, LoginResponse } from "@/types/loginType";
 import { USE_FETCH_BLOG_BY_ID } from "../BlogQuery/useFetchBlogById";
+import { getErrorMessage } from "@/utils/error";
 
 export interface ICommentProps {
     postId: number,
@@ -26,7 +27,10 @@ export default function usePostComment() {
             alert("Comment Posted Successfully")
         },
         onError: (error) => {
-            console.error('Login failed:', error);
+            //@ts-expect-error
+            console.log(error?.status)
+            //@ts-expect-error
+            alert(getErrorMessage(error?.status))
         },
 
     });

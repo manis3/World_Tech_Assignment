@@ -18,7 +18,13 @@ export default function useUpdateBlog() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: [USE_FETCH_BLOGS] })
             alert('Blog Updated successfully');
-        }
+        },
+        onError: (error) => {
+            //@ts-expect-error
+            console.log(error?.status)
+            //@ts-expect-error
+            alert(getErrorMessage(error?.status))
+        },
     });
     return {
         updateBlog: mutateAsync,

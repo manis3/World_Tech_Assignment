@@ -22,20 +22,20 @@ export default function useAxiosInstance() {
         (error) => Promise.reject(error)
     );
 
-    // Response interceptor to handle token expiration or invalid token
-    axiosInstance.interceptors.response.use(
-        (response) => response,
-        (error) => {
-            if (error.response && error.response.status === 401) {
-                // Handle Unauthorized error (e.g., clear token and redirect to login)
-                console.log('Token expired or invalid. Logging out...');
-                localStorage.removeItem('token');
-                // Optionally redirect to the login page
-                window.location.href = '/login';  // Adjust based on your app's routing
-            }
-            return Promise.reject(error);
-        }
-    );
+    // // Response interceptor to handle token expiration or invalid token
+    // axiosInstance.interceptors.response.use(
+    //     (response) => response,
+    //     (error) => {
+    //         if (error.response && error.response.status === 401) {
+    //             // Handle Unauthorized error (e.g., clear token and redirect to login)
+    //             console.log('Token expired or invalid. Logging out...');
+    //             localStorage.removeItem('token');
+    //             // Optionally redirect to the login page
+    //             window.location.href = '/';  // Adjust based on your app's routing
+    //         }
+    //         return Promise.reject(error);
+    //     }
+    // );
 
     return {
         axiosInstance: axiosInstance
