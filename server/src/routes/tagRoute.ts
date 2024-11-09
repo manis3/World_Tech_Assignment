@@ -5,9 +5,9 @@ import { createTag, deleteTag, getAllTags, getPostByTag, updateTag } from '../co
 
 const tagRoutes: Router = Router();
 
+tagRoutes.get("/get-post", errorHandler(getPostByTag));
+tagRoutes.get("/get-all", errorHandler(getAllTags));
 tagRoutes.post('/create', authMiddleware, errorHandler(createTag));
-tagRoutes.get("/get-all", authMiddleware, errorHandler(getAllTags));
-tagRoutes.get("/get-post", authMiddleware, errorHandler(getPostByTag));
 tagRoutes.put("/update", authMiddleware, errorHandler(updateTag));
 tagRoutes.delete("/delete", authMiddleware, errorHandler(deleteTag));
 

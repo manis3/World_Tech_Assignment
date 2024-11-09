@@ -16,10 +16,15 @@ export const getAllTags = async (req: Request, res: Response, next: NextFunction
 }
 
 export const getPostByTag = async (req: Request, res: Response, next: NextFunction) => {
-    const tagId = parseInt(req.query.id as string);
-    NotFound(tagId, 'Tag not found!', next)
+    const tagIdParam = req.query.id as string;
+    let tagId;
+    if (tagIdParam && !isNaN(Number(tagIdParam)) && tagIdParam !== 'undefined') {
+        tagId = parseInt(tagIdParam);
+    } else {
+        tagId = undefined;
+    }
     const posts = await prismaClient.post.findMany({
-        where: { id: tagId },
+        where: tagId ? { tags: { some: { id: tagId } } } : {},
         include: {
             author: true,
             Comment: {
@@ -30,11 +35,12 @@ export const getPostByTag = async (req: Request, res: Response, next: NextFuncti
             category: true,
             tags: true,
         },
-    })
+    });
 
     res.json({ message: 'Post fetched Successfully', data: { posts } });
 
-}
+};
+
 
 export const updateTag = async (req: Request, res: Response, next: NextFunction) => {
     const { name } = req.body;

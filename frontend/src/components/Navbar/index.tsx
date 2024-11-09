@@ -9,9 +9,37 @@ import LoginModal from '../loginModal/loginModal'
 import Button from '../ui/Button/ButtonWithLoadingState'
 import SignupModal from '../signupModal/signupModal'
 
+
+const IsAuthenticated = ({ handleOpenModal, isAuthenticated, handleShowSignupModal, handleLogout }: {
+  handleOpenModal: () => void;
+  isAuthenticated: boolean;
+  handleShowSignupModal: () => void;
+  handleLogout: () => void;
+}) => {
+  if (isAuthenticated) {
+    return (
+      <Button onClick={handleLogout} loading={false} className="capitalize w-[calc(100%/2)] lg:w-full px-3 lg:px-8">
+        Logout
+      </Button>
+    );
+  }
+
+  return (
+    <div className="flex gap-4">
+      <Button onClick={handleOpenModal} loading={false} className="capitalize w-[calc(100%/2)] lg:w-full px-3 lg:px-8">
+        Login
+      </Button>
+      <Button variant="link" onClick={handleShowSignupModal}>
+        Signup
+      </Button>
+    </div>
+  );
+};
+
+
 const NavBar = ({ pathname }: { pathname: string }) => {
 
-  const { handleOpenModal, handleCloseModal, showModal, handleLoginUser, isLoggingIn, showSignupModal, handleShowSignupModal, handleCloseSignupModal, handleSignupUser } = useLogin();
+  const { handleOpenModal, handleCloseModal, showModal, handleLoginUser, isLoggingIn, showSignupModal, handleShowSignupModal, handleCloseSignupModal, handleSignupUser, isAuthenticated, handleLogout } = useLogin();
 
   return (
     <div className='flex item-center justify-between bg-white px-4 py-3'>
@@ -32,12 +60,7 @@ const NavBar = ({ pathname }: { pathname: string }) => {
         <div className='flex gap-20 '>
           <RouteMap pathname={pathname} routes={routes} />
         </div>
-        <div className='flex gap-4'>
-          <Button onClick={handleOpenModal} loading={false} className="capitalize w-[calc(100%/2)] lg:w-full px-3 lg:px-8">Login</Button>
-          <Button variant={'link'} onClick={
-            handleShowSignupModal
-          }>Signup</Button>
-        </div>
+        <IsAuthenticated isAuthenticated={isAuthenticated} handleOpenModal={handleOpenModal} handleShowSignupModal={handleShowSignupModal} handleLogout={handleLogout} />
 
 
       </div>

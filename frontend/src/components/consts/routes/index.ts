@@ -5,7 +5,7 @@ export const routes = [
     },
     {
         name: "Cateogry",
-        path: "/cateogry",
+        path: "/category",
     },
     {
         name: "Tags",

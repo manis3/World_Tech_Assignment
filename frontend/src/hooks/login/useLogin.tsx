@@ -11,6 +11,8 @@ export default function useLogin() {
     const { openModal, closeModal, showModal } = useHandleModalAction()
     const { createUser, isUserBeingCreated } = useUserSignUp();
     const { loginUser, isLoggingIn } = useLoginUser();
+
+    const isAuthenticated = localStorage.getItem('token') ? true : false;
     const handleShowSignupModal = () => {
         setShowSignupModal(true);
     }
@@ -42,6 +44,11 @@ export default function useLogin() {
             console.log(err);
         }
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+
+    }
     return {
         handleOpenModal,
         handleCloseModal,
@@ -51,6 +58,8 @@ export default function useLogin() {
         handleShowSignupModal,
         handleCloseSignupModal,
         showSignupModal,
-        handleSignupUser
+        handleSignupUser,
+        isAuthenticated,
+        handleLogout
     }
 }

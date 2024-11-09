@@ -17,10 +17,16 @@ export const getAllCategory = async (req: Request, res: Response, next: NextFunc
 }
 
 export const getPostByCategory = async (req: Request, res: Response, next: NextFunction) => {
-  const categoryId = parseInt(req.query.id as string);
-  NotFound(categoryId, 'Category not found!', next)
+  const categoryIdParam = req.query.id as string;
+
+  let categoryId;
+  if (categoryIdParam && !isNaN(Number(categoryIdParam)) && categoryIdParam !== 'undefined') {
+    categoryId = parseInt(categoryIdParam);
+  } else {
+    categoryId = undefined;
+  }
   const posts = await prismaClient.post.findMany({
-    where: { categoryId },
+    where: categoryId ? { categoryId } : {},
     include: {
       author: true,
       Comment: {
@@ -31,11 +37,11 @@ export const getPostByCategory = async (req: Request, res: Response, next: NextF
       category: true,
       tags: true,
     },
-  })
+  });
 
-  res.json({ message: 'Post fetched Successfully', posts });
+  res.json({ message: 'Posts fetched successfully', posts });
+};
 
-}
 
 export const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
   const { name } = req.body;

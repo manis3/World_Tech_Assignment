@@ -12,10 +12,9 @@ import {
 const categoryRoutes: Router = Router()
 
 categoryRoutes.post('/create', authMiddleware, errorHandler(createCategory))
-categoryRoutes.get('/get-all-category', authMiddleware, errorHandler(getAllCategory))
+categoryRoutes.get('/get-all-category', errorHandler(getAllCategory))
 categoryRoutes.get(
   '/get-category-post',
-  authMiddleware,
   errorHandler(getPostByCategory),
 )
 categoryRoutes.put('/update', authMiddleware, errorHandler(updateCategory))
