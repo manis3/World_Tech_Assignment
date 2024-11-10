@@ -7,7 +7,6 @@ import useUpdateBlog from '@/query/blogQuery/useUpdateBlog';
 
 export default function useAddBlog() {
     const [updateBlogId, setUpdateBlogId] = useState<number>()
-    const [updatedBlogData, setUpdatedBlogData] = useState<any>()
     const [ShowUpdateBlogModal, setShowUpdateBlogModal] = useState(false)
     const { openModal, closeModal, showModal } = useHandleModalAction()
     const { createNewBlog, isNewBlogBeingCreated } = useAddNewlBLog()
@@ -65,7 +64,9 @@ export default function useAddBlog() {
         handleCloseUpdateBlogModal,
         ShowUpdateBlogModal,
         handleSubmitUpdatedBlog,
-        blogData
+        blogData,
+        IsBlogBeingUpdated
+
 
     }
 

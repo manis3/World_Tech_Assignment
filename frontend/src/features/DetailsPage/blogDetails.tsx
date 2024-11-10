@@ -4,13 +4,14 @@ import Button from '@/components/ui/button/buttonWithLoadingState';
 import { Textarea } from '@/components/ui/textArea/textArea';
 import useFetchBlogById from '@/query/blogQuery/useFetchBlogById';
 import usePostComment from '@/query/comment/usePostComment';
+import { useSearchParams } from 'next/navigation';
 
 
 export default function BlogDetails() {
-    const { postComment, isCommentBeingPosted } = usePostComment();
-    const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id') as string) | 0;
+    const searchParams = useSearchParams()
+    const id = Number(searchParams.get('id'));
     const { blogData } = useFetchBlogById(id)
+    const { postComment, isCommentBeingPosted } = usePostComment();
     const [newComment, setNewComment] = useState('');
     const handleCommentSubmit = () => {
         const payload = {
@@ -42,7 +43,7 @@ export default function BlogDetails() {
 
                     <div className="flex flex-wrap gap-2 mt-4">
                         {
-                            //@ts-expect-error
+                            //@ts-expect-error: type
                             blogData?.tags?.map((tag) => (
                                 <span key={tag} className="bg-gray-200 text-gray-700 text-md font-medium px-3 py-1 rounded-full">
                                     {tag.name}
@@ -64,7 +65,7 @@ export default function BlogDetails() {
                         <div className="space-y-4 mt-4">
 
                             {
-                                //@ts-expect-error
+                                //@ts-expect-error: type any
                                 blogData?.Comment.map((comment) => (
                                     <div key={comment.id} className="border-t border-gray-300 pt-2">
                                         <p className="text-sm text-gray-700">{comment.content}</p>

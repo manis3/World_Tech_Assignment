@@ -41,10 +41,8 @@ export const getAllPosts = async (req: Request, res: Response, next: NextFunctio
   const page = req.query.page ? Number(req.query.page) : 1;
   const limit = req.query.limit ? Number(req.query.limit) : 10;
 
-  // Calculate skip value based on the current page and limit
   const skip = (page - 1) * limit;
 
-  // Fetch posts with pagination
   const posts = await prismaClient.post.findMany({
     take: limit,
     skip: skip,
@@ -58,18 +56,20 @@ export const getAllPosts = async (req: Request, res: Response, next: NextFunctio
       category: true,
       tags: true,
     },
+    orderBy: {
+      created_at: 'desc'
+    }
   });
 
   const totalPosts = await prismaClient.post.count();
 
-  // Check if there are more posts available
   const nextPage = posts.length < limit ? null : page + 1;
 
   res.json({
     message: 'Posts fetched successfully',
     data: {
       posts,
-      nextPage,  // Include nextPage for the client to know if there are more posts
+      nextPage,
       totalPosts,
     }
   });
@@ -123,6 +123,7 @@ export const getUserPosts = async (
       // comments: true,
       author: true,
     },
+
   })
 
   res.json({ message: 'User post successfully', userPosts })

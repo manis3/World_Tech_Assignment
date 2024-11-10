@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SearchComponent from '../searchBar'
 import Image from 'next/image'
 import blogImage from '../../assets/Blog_Image.png'

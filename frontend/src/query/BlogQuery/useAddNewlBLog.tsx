@@ -21,9 +21,9 @@ export default function useAddNewlBLog() {
             alert('Blog created successfully');
         },
         onError: (error) => {
-            //@ts-expect-error
+            //@ts-expect-error:atype any
             console.log(error?.status)
-            //@ts-expect-error
+            //@ts-expect-error: type any
             alert(getErrorMessage(error?.status))
         }
     });

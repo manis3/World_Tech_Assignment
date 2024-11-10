@@ -1,3 +1,4 @@
+
 import useLoginUser from '@/query/userLogin/useLoginUser';
 import { useHandleModalAction } from '../useHandleModalAction'
 import { LoginRequest } from '@/types/loginType';
@@ -9,10 +10,10 @@ export default function useLogin() {
     const [showSignupModal, setShowSignupModal] = useState(false)
 
     const { openModal, closeModal, showModal } = useHandleModalAction()
-    const { createUser, isUserBeingCreated } = useUserSignUp();
+    const { createUser } = useUserSignUp();
     const { loginUser, isLoggingIn } = useLoginUser();
 
-    const isAuthenticated = localStorage.getItem('token') ? true : false;
+    const isAuthenticated = Boolean(localStorage.getItem('token'));
     const handleShowSignupModal = () => {
         setShowSignupModal(true);
     }
