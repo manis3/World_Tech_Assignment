@@ -7,6 +7,7 @@ World Tech Assignment
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
+- [Preview](#preview)
 
 ## Introduction
 
